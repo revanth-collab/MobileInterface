@@ -1,0 +1,153 @@
+
+.slick-slide > div {
+    display: flex;
+    justify-content: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.upcoming-carousel-container {
+    background-color: #FFFFFF;
+    width: 330px;
+    max-width: 330px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+
+.upcoming-top-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:10px 8px;
+    gap:7px;
+    height: 80px;
+    /* width: 250px; */
+}
+.upcoming-image{
+    height: 60px;
+    width: 60px;;
+}
+.upcoming-top-middle-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+.upcoming-card-heading {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    color: #111111;
+    letter-spacing: 0;
+    margin: 0;
+    width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.map-pin {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+.upcoming-card-para {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: #111111;
+    letter-spacing: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.upcoming-card-subheading {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    color: #111111;
+    letter-spacing: 0;
+    margin: 0;
+}
+.upcoming-line {
+    height: 60px;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+}
+.upcoming-time-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:6px;
+    width: 62px;
+}
+.upcoming-clock {
+    width: 20px;
+    height: 20px;
+}
+.upcoming-time {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 100%;
+    color: #111111;
+    letter-spacing: 0;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+.upcoming-date {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    color: #111111;
+    letter-spacing: 0;
+    margin: 0;
+    text-align: center;
+    /* white-space: nowrap; */
+}
+.upcoming-bottom-container {
+    background: linear-gradient(to right, #5B4C2D, #C1A15F);
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap:4px;
+    padding: 10px;
+}
+.upcoming-clock-image {
+    width: 16px;
+    height: 16px;
+}
+.upcoming-bottom-heading {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    margin: 0;
+}
+.upcoming-bottom-content {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    margin: 0;
+}
