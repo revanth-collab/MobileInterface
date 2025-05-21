@@ -143,14 +143,16 @@ class HomePage extends Component {
                 </Row>
                 <Row className="services-row px-3">
                     <Col className="servies-container">
-                        <Link to="/spa" className="link" onClick={() => this.handleLocationChange('/spa')}>
+                        <Link to="/salon" className="link" onClick={() => this.handleLocationChange('/salon')}>
                             <img src="/images/Salon.png" alt="Salon" className="service-image" />
                             <h1 className="service-heading">Salon</h1>
                         </Link>
                     </Col>
                     <Col className="servies-container">
-                        <img src="/images/Spa.png" alt="Salon" className="service-image" />
-                        <h1 className="service-heading">Spa</h1>
+                        <Link to="/spa" className="link" onClick={() => this.handleLocationChange('/spa')}>
+                            <img src="/images/Spa.png" alt="Spa" className="service-image" />
+                            <h1 className="service-heading">Spa</h1>
+                        </Link>
                     </Col>
                     <Col className="servies-container">
                         <img src="/images/Clinic.png" alt="Salon" className="service-image" />
