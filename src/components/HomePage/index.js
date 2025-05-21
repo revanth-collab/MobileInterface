@@ -162,7 +162,7 @@ class HomePage extends Component {
                         <img src="/images/Banner.avif" alt="Banner" className="banner-image" />
                     </Col>
                 </Row>
-                <h1 className="upcoming-heading">Upcoming Appointment</h1>
+                <h1 className="upcoming-heading px-2">Upcoming Appointment</h1>
                 <Row xs={12} className="upcoming-appointment-row m-0 p-0">
                     <Col className="upcoming-appointment-container">
                         <UpcomingAppointment upcomingDataList={UpcomingAppointmentData} />
