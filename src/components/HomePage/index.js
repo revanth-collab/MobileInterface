@@ -4,6 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import MobileHeader from "../MobileHeader";
+import Header from "../Header";
+
 import { FaArrowRight } from "react-icons/fa6";
 import Featured from "../Featured";
 
@@ -118,8 +121,12 @@ class HomePage extends Component {
         const {location,featuredData,UpcomingAppointmentData} =this.state;
         return (
             <Container className="home-page pt-3" fluid>
-                <Row className="row-nowrap px-3">
-                    <Col xs='auto' className="location-background-container">
+                <div className="d-none d-md-block mb-5">
+                    <Header />
+                </div>
+
+                <Row className="row-nowrap px-3 pt-2">
+                    <Col xs='auto' className="d-flex d-md-none location-background-container">
                         <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
                         <div className="dropdown">
                             <button className="dropbtn location-heading">{location}</button>
@@ -131,12 +138,24 @@ class HomePage extends Component {
                         </div>
                         <img src="/images/Vector.png" alt="arrow" className="vector-image" />
                     </Col>
-                    <Col xs="auto" className="notification-container">
+                    <Col xs="auto" className="d-flex d-md-none notification-container">
                         <img src="/images/Notification.png" alt="notification" className="notification-image" />
                     </Col>
                 </Row>
-                <Row className="px-3">
-                    <Col className="search-container">
+                <Row className="px-3 justify-content-center align-items-center mt-md-5 pt-md-5">
+                    <Col md={3} className="d-none d-md-flex location-background-container location-correction">
+                        <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
+                        <div className="dropdown">
+                            <button className="dropbtn location-heading">{location}</button>
+                            <div className="dropdown-content">
+                                <p onClick={()=>this.handleLocationChange("Hyderabad")}>Hyderabad</p>
+                                <p onClick={()=>this.handleLocationChange("Bangalore")}>Bangalore</p>
+                                <p onClick={()=>this.handleLocationChange("Chennai")}>Chennai</p>
+                            </div>
+                        </div>
+                        <img src="/images/Vector.png" alt="arrow" className="vector-image" />
+                    </Col>
+                    <Col xs={12} md={5} className="search-container">
                         <img src="/images/SearchIcon.png" alt="search" className="search-icon" />
                         <input type="text" className="search-input" placeholder="Search Spa, Services"/>
                     </Col>
@@ -184,6 +203,11 @@ class HomePage extends Component {
                         ))}
                     </Col>
                 </Row>
+
+                <div className="d-block d-md-none">
+                    <MobileHeader />
+                </div>
+
                 
             </Container>
         )

@@ -231,46 +231,44 @@ const SalonPage = () => {
                 </Col>
             </Row>
 
-            <Row className="filter-row">
-                <Col xs="auto" className="fitler-content-container">
-                    <h1 className="filters-content">Filters</h1>
-                    <div  className="filter-button">
-                        <div className="dropdown">
-                            <button className="dropbtn location-heading">Sort</button>
-                            <div className="dropdown-content">
-                                <p onClick={()=>handleLocationChanged("Increase")}>Low to High</p>
-                                <p onClick={()=>handleLocationChanged("Decrease")}>High to Low</p>
-                            </div>
+            <div className="filters-row">
+                <h1 className="filters-content">Filters</h1>
+                <div  className="filter-button">
+                    <div className="dropdown">
+                        <button className="dropbtn location-heading">Sort</button>
+                        <div className="dropdown-content">
+                            <p onClick={()=>handleLocationChanged("Increase")}>Low to High</p>
+                            <p onClick={()=>handleLocationChanged("Decrease")}>High to Low</p>
                         </div>
-                        <img src="/images/Vector.png" alt="arrow" className="vector-image" />
                     </div>
-                    <div xs="auto" className="filter-button">
-                        <button className="dropbtn location-heading">Discount</button>
-                    </div>
-                    <div xs="auto" className="filter-button">
-                        <div className="dropdown">
-                            <button className="dropbtn location-heading">Gender</button>
-                            <div className="dropdown-content">
-                                <p onClick={()=>handleLocationChanged("Hyderabad")}>Male</p>
-                                <p onClick={()=>handleLocationChanged("Bangalore")}>Female</p>
-                                <p onClick={()=>handleLocationChanged("Chennai")}>Unisex</p>
-                            </div>
+                    <img src="/images/Vector.png" alt="arrow" className="vector-image" />
+                </div>
+                <div xs="auto" className="filter-button">
+                    <button className="dropbtn location-heading">Discount</button>
+                </div>
+                <div xs="auto" className="filter-button">
+                    <div className="dropdown">
+                        <button className="dropbtn location-heading">Gender</button>
+                        <div className="dropdown-content">
+                            <p onClick={()=>handleLocationChanged("Hyderabad")}>Male</p>
+                            <p onClick={()=>handleLocationChanged("Bangalore")}>Female</p>
+                            <p onClick={()=>handleLocationChanged("Chennai")}>Unisex</p>
                         </div>
-                        <img src="/images/Vector.png" alt="arrow" className="vector-image" />
                     </div>
-                    <div xs="auto" className="filter-button">
-                        <div className="dropdown">
-                            <button className="dropbtn location-heading">Gender</button>
-                            <div className="dropdown-content">
-                                <p onClick={()=>handleLocationChanged("Hyderabad")}>Male</p>
-                                <p onClick={()=>handleLocationChanged("Bangalore")}>Female</p>
-                                <p onClick={()=>handleLocationChanged("Chennai")}>Unisex</p>
-                            </div>
+                    <img src="/images/Vector.png" alt="arrow" className="vector-image" />
+                </div>
+                <div xs="auto" className="filter-button">
+                    <div className="dropdown">
+                        <button className="dropbtn location-heading">Gender</button>
+                        <div className="dropdown-content">
+                            <p onClick={()=>handleLocationChanged("Hyderabad")}>Male</p>
+                            <p onClick={()=>handleLocationChanged("Bangalore")}>Female</p>
+                            <p onClick={()=>handleLocationChanged("Chennai")}>Unisex</p>
                         </div>
-                        <img src="/images/Vector.png" alt="arrow" className="vector-image" />
                     </div>
-                </Col>
-            </Row>
+                    <img src="/images/Vector.png" alt="arrow" className="vector-image" />
+                </div>
+            </div>
 
             <Row className="pt-4">
                 <Col className="featured-section-card-wrapper pb-4">
