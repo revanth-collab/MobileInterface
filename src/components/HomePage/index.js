@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 
 import MobileHeader from "../MobileHeader";
 import Header from "../Header";
+import Banner from "../Banner";
 
 import { FaArrowRight } from "react-icons/fa6";
 import Featured from "../Featured";
@@ -46,8 +47,45 @@ class HomePage extends Component {
         "rating":4.7,
         "distance":"1.5 km",
         "liked":false
+    },
+    {
+        "id":4,
+        "imageUrl":"images/Featured1.png",
+        "title":"Oasis Spa Haven",
+        "description":"Oasis Spa Haven is a luxurious spa retreat offering a range of rejuvenating treatments and therapies.",
+        "category":"Spa",
+        "rating":4.5,
+        "distance":"2.5 km",
+        "offer":"20% off on first visit",
+        "liked":false
+    },
+    {
+        "id":5,
+        "imageUrl":"images/Featured1.png",
+        "title":"Serenity Wellness Center",  
+        "description":"Serenity Wellness Center is a holistic wellness center providing spa, yoga, and wellness services.",
+        "category":"Wellness",
+        "rating":4.8,
+        "distance":"3.0 km",
+        "offer":"15% off on spa packages",
+        "liked":false
     }
     ],
+    bannerData:[{
+        "id":1,
+        "imageUrl":"images/Banner.avif",
+        "title":"Relax"
+    },
+    {
+        "id":2,
+        "imageUrl":"images/Banner.avif",
+        "title":"Rejuvenate"
+    },
+    {
+        "id":3,
+        "imageUrl":"images/Banner.avif",
+        "title":"Refresh"
+    }],
     UpcomingAppointmentData:[{
         "id":1,
         "imageUrl":"images/Upcoming1.png",
@@ -118,14 +156,14 @@ class HomePage extends Component {
     }
 
     render() {
-        const {location,featuredData,UpcomingAppointmentData} =this.state;
+        const {location,featuredData,UpcomingAppointmentData,bannerData} =this.state;
         return (
             <Container className="home-page pt-3" fluid>
                 <div className="d-none d-md-block mb-5">
                     <Header />
                 </div>
 
-                <Row className="row-nowrap px-3 pt-2">
+                <Row className="row-nowrap px-3 px-md-5 pt-2">
                     <Col xs='auto' className="d-flex d-md-none location-background-container">
                         <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
                         <div className="dropdown">
@@ -142,7 +180,7 @@ class HomePage extends Component {
                         <img src="/images/Notification.png" alt="notification" className="notification-image" />
                     </Col>
                 </Row>
-                <Row className="px-3 justify-content-center align-items-center mt-md-5 pt-md-5">
+                <Row className="px-3 px-md-5 justify-content-center align-items-center mt-md-5 pt-md-5">
                     <Col md={3} className="d-none d-md-flex location-background-container location-correction">
                         <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
                         <div className="dropdown">
@@ -160,7 +198,7 @@ class HomePage extends Component {
                         <input type="text" className="search-input" placeholder="Search Spa, Services"/>
                     </Col>
                 </Row>
-                <Row className="services-row px-3">
+                <Row className="services-row px-3 px-md-5">
                     <Col className="servies-container">
                         <Link to="/salon" className="link" onClick={() => this.handleLocationChange('/salon')}>
                             <img src="/images/Salon.png" alt="Salon" className="service-image" />
@@ -179,18 +217,18 @@ class HomePage extends Component {
                     </Col>
                 </Row>
                 <Row className="banner-container mb-3 mt-2">
-                    <Col className="px-3">
-                        <img src="/images/Banner.avif" alt="Banner" className="banner-image" />
+                    <Col className="px-3 px-md-5 banner-sub-container">
+                        <Banner bannerData={bannerData}/>
                     </Col>
                 </Row>
-                <h1 className="upcoming-heading px-2">Upcoming Appointment</h1>
-                <Row xs={12} className="upcoming-appointment-row m-0 p-0">
+                <h1 className="upcoming-heading px-2 px-md-5 d-flex d-md-none">Upcoming Appointment</h1>
+                <Row xs={12} className="upcoming-appointment-row m-0 p-0 d-flex d-md-none">
                     <Col className="upcoming-appointment-container">
                         <UpcomingAppointment upcomingDataList={UpcomingAppointmentData} />
                     </Col>
                 </Row>
-                <Row className="featured-section-row pt-4 px-3">
-                    <Col xs={12} className="featured-section-top-container">
+                <Row className="featured-section-row pt-4 px-3 pt-md-4 px-md-5">
+                    <Col xs={12} className="featured-section-top-container mb-3">
                         <h1 className="upcoming-heading">Featured</h1>
                         <div className="featured-section-view-all align-items-center">
                             <h2 className="featured-view-all">View all</h2>
@@ -204,7 +242,7 @@ class HomePage extends Component {
                     </Col>
                 </Row>
 
-                <div className="d-block d-md-none">
+                <div className="d-block d-md-none pt-5 mt-3">
                     <MobileHeader />
                 </div>
 

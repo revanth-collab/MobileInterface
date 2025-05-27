@@ -134,9 +134,16 @@
     align-items: center;
     gap: 10px;
 }
+@media screen and (min-width: 767px) {
+    .services-row {
+        gap:clamp(15px, 2vw, 25px);
+    }
+    
+}
 .servies-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 5px;
     background-color: #FFFFFF;
@@ -144,37 +151,39 @@
     padding: 20px;
     width:110px;
     margin-top: 10px;
-    height: 110px;
+    min-height: 110px;
+}
+@media screen and (min-width:767px) {
+    .servies-container {
+        flex-direction: row;
+        border-radius: 24px;
+    }
 }
 .service-image {
     width: 56px;
     height: 56px;
 }
+@media screen and (min-width: 767px) {
+    .service-image {
+        width: 111px;
+        height: 111px;
+    }
+}
 .service-heading {
     color: #000000;
     font-family: "Lato",sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: clamp(20px, 4vw, 28px);
     line-height: 100%;
     text-align: center;
     margin: 0;
 }
-.banner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.banner-image {
-    width: 100%;
-    max-width: 350px;
-    height: 125px;
-    border-radius: 20px;
-    margin-top: 10px;
-}
+
 .upcoming-heading {
     font-family: "Inter", sans-serif;
     font-weight: 700;
-    font-size: 17px;
+    font-size: clamp(17px, 2vw, 23px);
     line-height: 100%;
     color: #111111;
 }
@@ -221,7 +230,7 @@
     align-items: center;
     gap: 20px;
     margin-top: 20px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .featured-section-view-all {
     display: flex;
@@ -233,10 +242,9 @@
 .featured-view-all {
     font-family: "Lato",sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: clamp(14px, 2vw, 18px);
     line-height: 100%;
     color: #111111;
-
 }
 .featured-arrow {
     width: 15px;
@@ -253,6 +261,18 @@
 .link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+@media screen and (min-width: 767px) {
+    .link {
+        flex-direction: row;
+        justify-content: center;
+        gap:25px;
+    }
 }
 
 .location-correction {

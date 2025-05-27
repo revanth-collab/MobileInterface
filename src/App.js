@@ -5,7 +5,6 @@ import HomePage from './components/HomePage';
 import SpaPage from './components/SpaPage';
 import SalonPage from "./components/SalonPage";
 
-
 // import './App.css';
 
 function App() {

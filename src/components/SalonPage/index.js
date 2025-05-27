@@ -6,6 +6,7 @@ import Col from "react-bootstrap/esm/Col";
 import { FaArrowRight } from "react-icons/fa6";
 import Featured from "../Featured";
 
+import "../SpaPage/index.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SalonPage = () => {
