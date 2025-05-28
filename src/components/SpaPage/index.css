@@ -27,6 +27,8 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    height: 42px;
+    cursor: pointer;
 }
 .spa-reload-container {
     display: flex;
@@ -36,7 +38,17 @@
     gap: 10px;
     background-color: #ffedd1;
     border-radius: 20px;
-    max-height: 44px;
+    height: 42px;
+    cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+    .spa-reload-container {
+        border-radius: 10px;
+        width: 200px;
+    }
+    .spa-page-location-container {
+      border-radius: 10px;
+    }
 }
 .spa-reload-content {
     background: linear-gradient(to right, #5B4C2D, #C1A15F);
@@ -80,14 +92,20 @@
 
 .spa-card {
     position: relative;
-    width: 75px;
-    height: 66px;
+    width: clamp(75px,10vw,160px);
+    height: clamp(66px,10vw,140px);
     border-radius: 10px;
 }
 .spa-card-image {
-    width: 75px;
-    height: 66px;
+    width: clamp(75px,10vw,160px);
+    height: clamp(66px,10vw,140px);
     border-radius: 10px;
+}
+@media screen and (min-width:767px) {
+  .spa-service-cards-row {
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+  }
 }
 .spa-card::after {
   content: "";
@@ -131,10 +149,11 @@
 
 .premium-spa-services {
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: clamp(70px, 10vw, 110px);
+    height: clamp(70px, 10vw, 110px);
     object-fit: cover;
 }
+
 
 .suggest-card {
     height: 107px;
@@ -266,4 +285,25 @@
 }
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.service-page-align-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.popup-main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:5px;
+  border-radius: 20px;
+  margin: 0;
+  padding: 0;
+}
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
 }

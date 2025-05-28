@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -6,15 +6,25 @@ import Col from "react-bootstrap/esm/Col";
 import { FaArrowRight } from "react-icons/fa6";
 import Featured from "../Featured";
 
+import Banner from "../Banner";
+
+import Context from "../../contextAPI/Context";
+
+import Popup from 'reactjs-popup'
+
+import 'reactjs-popup/dist/index.css'
+
 import "./index.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
 const SpaPage = () => {
+    // const { selectedService, handleSelectedServiceStatus } = useContext(Context);
+    const {selectedService, handleSelectedServiceStatus, featuredData, bannerData, handleLikeStatus} = useContext(Context);
+
 
     const [spaService,setSpaService] = useState([]);
     const [premiumSpa,setPremiumSpa] = useState([]);
-    const [featuredData,setFeaturedData] = useState([]);
 
     const [loading,setLoading] = useState(true);
 
@@ -118,7 +128,6 @@ const SpaPage = () => {
             ];
             setSpaService(dummyData);
             setPremiumSpa(dummyData);
-            setFeaturedData(dummyfeaturedData);
             setLoading(false);
         }, 1000);
     },[])
@@ -127,15 +136,17 @@ const SpaPage = () => {
     const handleLocationChanged = (location) => {
         console.log(location);    
     }
+    
     return (
-        <Container fluid className="spa-page p-4">
+        <Container fluid className="px-md-5 spa-page p-4">
+
             <Row className="gap-3 pb-3">
-                <Col xs="auto">
+                <Col xs="auto" className="d-flex d-md-none">
                     <Link to="/" className="spa-back-container">
                         <img src="/images/Back.png" alt="back" className="back" onClick={() => window.history.back()}/>
                     </Link>
                 </Col>
-                <Col className="dropdown spa-page-location-container">
+                <Col className="d-flex d-md-none dropdown spa-page-location-container">
                     <div>
                         <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
                         <div className="dropdown">
@@ -150,15 +161,54 @@ const SpaPage = () => {
                     <img src="/images/Vector.png" alt="arrow" className="vector-image" />
                 </Col>
             </Row>
-            <Row className="gap-3 pb-3">
-                <Col className="search-container">
+            <Row className="mt-md-3 service-page-align-container gap-3 pb-3">
+                <Col xs="auto" md={5} className="order-1 order-md-2 search-container">
                     <img src="/images/SearchIcon.png" alt="search" className="search-icon" />
                     <input type="text" className="search-input" placeholder="Search Spa, Services"/>
                 </Col>
-                <Col xs='auto' className="spa-reload-container">
-                    <h1 className="spa-reload-content">SPA</h1>
-                    <img src="/images/Reload.png" alt="reload" className="spa-reload-image" />
+
+                <Col xs={2} className="popup-main-container order-1 order-md-1 mb-2 ms-3">
+                    <Popup
+                        modal
+                        trigger={
+                            <div className="spa-reload-container px-2">
+                                <h1 className="spa-reload-content">{selectedService}</h1>
+                                <img src="/images/Reload.png" alt="reload" className="spa-reload-image" />
+                            </div>
+                        }
+                    >
+                        {close => (
+                        <>
+                            <div className="popup-container">
+                                <p>React is a popular and widely used programming language</p>
+                            </div>
+                            <button
+                            type="button"
+                            className="trigger-button"
+                            onClick={() => close()}
+                            >
+                            Close
+                            </button>
+                        </>
+                        )}
+                    </Popup>
                 </Col>
+
+                <Col xs={3} className="order-3 d-none d-md-flex dropdown spa-page-location-container mb-2">
+                    <div>
+                        <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
+                        <div className="dropdown">
+                            <button className="dropbtn location-heading">Hyderabad</button>
+                            <div className="dropdown-content">
+                                <p onClick={()=>handleLocationChanged("Hyderabad")}>Hyderabad</p>
+                                <p onClick={()=>handleLocationChanged("Bangalore")}>Bangalore</p>
+                                <p onClick={()=>handleLocationChanged("Chennai")}>Chennai</p>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="/images/Vector.png" alt="arrow" className="vector-image" />
+                </Col>
+
             </Row>
             <Row>
                 <Col xs={12} className="featured-section-top-container">
@@ -183,7 +233,8 @@ const SpaPage = () => {
             </div>
             <Row className="mt-3 mb-3" >
                 <Col xs={12}>
-                    <img src="/images/Banner.avif" alt="Banner" className="spaservice-banner" />
+                    {/* <img src="/images/Banner.avif" alt="Banner" className="spaservice-banner" /> */}
+                    <Banner bannerData={bannerData}/>
                 </Col>
             </Row>
 
@@ -197,12 +248,12 @@ const SpaPage = () => {
                 </Col>
             </Row>
             
-            <Row>
+            <Row className="mb-md-4">
                 <Col>
                     <div className="premium-spa-row">
                         {premiumSpa.map((each) => (
                         <img
-                            key={each.id}  // Add a key if available
+                            key={each.id}
                             src={each.imageUrl}
                             alt={each.service}
                             className="premium-spa-services"
@@ -212,7 +263,7 @@ const SpaPage = () => {
                 </Col>
             </Row>
 
-            <Row className="mt-4 mb-4">
+            <Row className="d-flex d-md-none mt-4 mb-4">
                 <Col className="suggest-card me-2">
                         <img src="/images/OfferImage.png" alt="OfferImage" className="suggest-image" />
                         <h1 className="suggest-content">Offer</h1>
@@ -257,7 +308,7 @@ const SpaPage = () => {
                             <img src="/images/Vector.png" alt="arrow" className="vector-image" />
                         </div>
 
-                        <div className="filter-button">
+                        {/* <div className="filter-button">
                             <div className="dropdown">
                                 <button className="dropbtn location-heading">Gender</button>
                                 <div className="dropdown-content">
@@ -267,7 +318,7 @@ const SpaPage = () => {
                                 </div>
                             </div>
                             <img src="/images/Vector.png" alt="arrow" className="vector-image" />
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

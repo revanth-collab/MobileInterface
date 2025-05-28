@@ -183,7 +183,7 @@
 .upcoming-heading {
     font-family: "Inter", sans-serif;
     font-weight: 700;
-    font-size: clamp(17px, 2vw, 23px);
+    font-size: clamp(17px, 2vw, 22px);
     line-height: 100%;
     color: #111111;
 }
@@ -238,11 +238,12 @@
     justify-content: center;
     align-items: center;
     gap:5px;
+    cursor: pointer;
 }
 .featured-view-all {
     font-family: "Lato",sans-serif;
     font-weight: 500;
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: clamp(12px, 2vw, 14px);
     line-height: 100%;
     color: #111111;
 }
