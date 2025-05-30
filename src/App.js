@@ -17,7 +17,7 @@ import MobileHeader from "./components/MobileHeader";
 // import './App.css';
 
 class App extends React.Component {
-  state = {location:"Hyderabad", latitude:"", longitude:"",selectedService:"All",featuredData:[{
+  state = {location:"Hyderabad",main_category_id:"", vendorsData:[], latitude:"", longitude:"",selectedService:"All",featuredData:[{
         "id":1,
         "imageUrl":"images/Featured1.png",
         "title":"Oasis Spa Haven",  
@@ -141,7 +141,7 @@ class App extends React.Component {
     }
 
     getServicesData = async () => {
-      const { latitude, longitude } = this.state;
+      const { latitude, longitude,main_category_id } = this.state;
 
       console.log("Fetching services data with latitude:", latitude, "and longitude:", longitude);
       if (!latitude || !longitude) {
@@ -154,23 +154,22 @@ class App extends React.Component {
       });
 
       const url = `/api/user/near-by-shops?${queryParams.toString()}`;
+      const formData = new FormData();
+      formData.append("latitude", "17.4266834");
+      formData.append("longitude", "78.6050584");  
+      formData.append("main_category_id", `${main_category_id}`);
 
       const options = {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          latitude: parseFloat(latitude),
-          longitude: parseFloat(longitude),
-          main_category_id: 0
-        })
+        body: formData
+
       };
 
       try {
         const response = await fetch(url, options);
         const data = await response.json();
         console.log("Services Data:", data);
+        this.setState({ vendorsData: data.details || []});
       } catch (error) {
         console.error("Error fetching services:", error);
       }
@@ -190,44 +189,14 @@ class App extends React.Component {
 
     }
 
-  //   getServicesData = async () => {
-  //   const { latitude, longitude } = this.state;
-
-  //   if (!latitude || !longitude) {
-  //     console.warn("Missing latitude or longitude.");
-  //     return;
-  //   }
-
-  //   console.log("Calling API with:", latitude, longitude);
-
-  //   const url = `/api/user/near-by-shops`; // No query params
-
-  //   const options = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       latitude: parseFloat(latitude),
-  //       longitude: parseFloat(longitude),
-  //       main_category_id: 0,
-  //       auth_code: "t1LDmyuNIbsBYwRSNFOocUOrs8AATOs1"
-  //     })
-  //   };
-
-  //   try {
-  //     const response = await fetch(url, options);
-  //     const data = await response.json();
-  //     console.log("Services Data:", data);
-  //   } catch (error) {
-  //     console.error("Error fetching services:", error);
-  //   }
-  // };
-
-
 
     handleSelectedServiceStatus = (service) => {
         this.setState({ selectedService: service });
+    }
+
+    setMainCategoryId = (number) => {
+      // console.log("Setting main category ID to:", number);
+      this.setState({ main_category_id: `${number}` },this.getServicesData);
     }
 
     handleLocationChange = (location) => {
@@ -236,19 +205,20 @@ class App extends React.Component {
 
     handleLikeStatus = (id) => {
         this.setState((prevState) => ({
-            featuredData: prevState.featuredData.map((item) =>
-                item.id === id ? { ...item, liked: !item.liked } : item
+            vendorsData: prevState.vendorsData.map((item) =>
+                item.id === id ? { ...item, added_favorite: !item.added_favorite } : item
             ),
         }));
     }
 
   render() {
-    const { location, latitude,longitude, selectedService, featuredData, bannerData, UpcomingAppointmentData } = this.state;    
+    const { location, latitude,longitude,main_category_id,vendorsData, selectedService, featuredData, bannerData, UpcomingAppointmentData } = this.state;    
     return (
-      <Context.Provider value={{location, latitude,longitude, selectedService, featuredData, bannerData, UpcomingAppointmentData,
+      <Context.Provider value={{location,vendorsData, latitude,longitude, selectedService,main_category_id, featuredData, bannerData, UpcomingAppointmentData,
         handleSelectedServiceStatus: this.handleSelectedServiceStatus,
         handleLocationChange: this.handleLocationChange,
-        handleLikeStatus: this.handleLikeStatus
+        handleLikeStatus: this.handleLikeStatus,
+        setMainCategoryId: this.setMainCategoryId,
       }}>
         <Router>
           <div className="d-none d-md-block mb-5">

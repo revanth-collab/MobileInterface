@@ -2,9 +2,10 @@
     background-color: #eedbb4;
     padding:10px;
     border-radius: 16px;
-    width: 100%;
-    max-width: 350px;
-    min-height: 100px;
+    /* width: 100%; */
+    width: 310px;
+    /* max-width: 340px; */
+    min-height: 90px;
     /* max-height: 150px; */
     display: flex;
     flex-direction: column;
@@ -21,6 +22,9 @@
     position: relative;
 }
 @media screen and (min-width:767px) {
+    /* .featured-section-container {
+        max-width: 350px;
+    } */
     .featured-section-top-card-container {
         flex-direction: column;
         align-items: center;  
@@ -80,6 +84,7 @@
     overflow: hidden;
     text-overflow: ellipsis; 
     margin: 0;
+
 }
 @media screen and (min-width:767px) {
     .category {
@@ -102,10 +107,13 @@
     align-content: center;
     gap:5px;
     margin: 0;
+    font-family: "Lato",sans-serif;
+    font-weight: 500;
+    font-size:12px;
 }
 .para{
     margin:0;
-    margin-top: 2px;
+    margin-bottom: 10px;
 }
 .featured-like {
     color: #B7995B;
@@ -151,7 +159,7 @@
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to top,#111111, rgba(0, 0, 0, 0.5), transparent);
+  background: linear-gradient(to top,#111111, rgba(0, 0, 0, 0.4),transparent);
   z-index: 1;
   border-radius: 16px;
 }
@@ -168,7 +176,7 @@
     }
 }
 
-.offer-md {
+/* .offer-md {
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -182,4 +190,36 @@
     gap: 5px;
     box-shadow: 0px 0px 3px 3px rgba(15, 15, 15, 0.06);
     z-index: 2;
+} */
+
+.offer-md {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    padding: 5px 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+
+
+
+.offer {
+    padding: 0;
+    margin: 0;
+}
+
+.lines-remover {
+  text-decoration: none;
+  color: #111111;
 }

@@ -2,6 +2,9 @@ import React from "react";
 
 
 const Context = React.createContext({
+
+    vendorsData:[],
+    
     latitude:"",
     longitude:"",
     
@@ -10,6 +13,9 @@ const Context = React.createContext({
 
     location:"Hyderabad",
     handleLocationChange: ()=>{},
+
+    main_category_id:"",
+    setMainCategoryId: () => {},
 
     UpcomingAppointmentData: [],
     

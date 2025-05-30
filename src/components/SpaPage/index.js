@@ -25,9 +25,10 @@ const SpaPage = () => {
 
     const navigate = useNavigate();
 
+    const {selectedService, handleSelectedServiceStatus,main_category_id,setMainCategoryId, featuredData, bannerData, handleLikeStatus,vendorsData, latitude, longitude,location} = useContext(Context);
 
-    // const { selectedService, handleSelectedServiceStatus } = useContext(Context);
-    const {selectedService, handleSelectedServiceStatus, featuredData, bannerData, handleLikeStatus, latitude, longitude,location} = useContext(Context);
+    // console.log("Vendor Data:", vendorsData);
+    // console.log("main_category_id:", main_category_id);
 
     const [spaService,setSpaService] = useState([]);
     const [premiumSpa,setPremiumSpa] = useState([]);
@@ -192,7 +193,8 @@ const SpaPage = () => {
                                     <div>
                                         <div className="link popup-card" onClick={() => {
                                             handleSelectedServiceStatus('SALON'); 
-                                            close(); 
+                                            setMainCategoryId(1);
+                                            close();
                                             navigate('/salon');
                                         }}>
                                             <img src="/images/Salon_category.webp" alt="Salon" className="popup-card-image" />
@@ -207,6 +209,7 @@ const SpaPage = () => {
                                     <div>
                                         <div className="link popup-card" onClick={() => {
                                             handleSelectedServiceStatus('SPA');
+                                            setMainCategoryId(2);
                                             close(); 
                                             navigate('/spa'); 
                                         }}>
@@ -222,6 +225,7 @@ const SpaPage = () => {
                                     <div>
                                         <div className="link popup-card" onClick={() => {
                                             handleSelectedServiceStatus('CLINIC');
+                                            setMainCategoryId(3);
                                             close(); 
                                             navigate('/clinic'); 
                                         }}>
@@ -235,13 +239,6 @@ const SpaPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            // {/* <button
-                            // type="button"
-                            // className="trigger-button"
-                            // onClick={() => close()}
-                            // >
-                            // Close
-                            // </button> */}
                         )}
                     </Popup>
                 </Col>
@@ -378,7 +375,7 @@ const SpaPage = () => {
 
             <Row className="pt-4">
                 <Col className="featured-section-card-wrapper pb-4">
-                    {featuredData.map((each) => (
+                    {vendorsData.map((each) => (
                         <Featured featuredData={each} key={each.id} />
                     ))}
                 </Col>

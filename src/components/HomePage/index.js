@@ -17,7 +17,7 @@ import UpcomingAppointment from "../UpcomingAppointment";
 const HomePage = () => (
             <Context.Consumer> 
             {value => {
-                const {location,featuredData,UpcomingAppointmentData,bannerData,selectedService,handleSelectedServiceStatus, handleLocationChange, handleLikeStatus} =value;
+                const {location,featuredData,UpcomingAppointmentData,main_category_id,vendorsData,bannerData,selectedService,handleSelectedServiceStatus, handleLocationChange, handleLikeStatus, setMainCategoryId} =value;
                 return (
                     <Container className="home-page pt-3" fluid>
                         <Row className="row-nowrap px-3 px-md-5 pt-2">
@@ -37,7 +37,7 @@ const HomePage = () => (
                                 <img src="/images/Notification.png" alt="notification" className="notification-image" />
                             </Col>
                         </Row>
-                        <Row className="px-3 px-md-5 justify-content-center align-items-center mt-md-5 pt-md-5">
+                        <Row className="px-3 px-md-5 pb-md-4 justify-content-center align-items-center mt-md-5 pt-md-5">
                             <Col md="auto" className="d-none d-md-flex location-background-container location-correction">
                                 <img src="/images/location_icon.png"  alt="location-images" className="location-image" />
                                 <div className="dropdown">
@@ -55,20 +55,20 @@ const HomePage = () => (
                                 <input type="text" className="search-input" placeholder="Search Spa, Services"/>
                             </Col>
                         </Row>
-                        <Row className="services-row px-3 px-md-5">
-                            <Col className="servies-container" onClick={()=>handleSelectedServiceStatus('SALON')}>
+                        <Row className="services-row px-3 px-md-5 pb-md-3">
+                            <Col className="servies-container" onClick={()=>{handleSelectedServiceStatus('SALON'); setMainCategoryId(1)}}>
                                 <Link to="/salon" className="link">
                                     <img src="/images/Salon.png" alt="Salon" className="service-image" />
                                     <h1 className="service-heading">Salon</h1>
                                 </Link>
                             </Col>
-                            <Col className="servies-container" onClick={()=> handleSelectedServiceStatus('SPA')}>
+                            <Col className="servies-container" onClick={()=> {handleSelectedServiceStatus('SPA'); setMainCategoryId(2)}}>
                                 <Link to="/spa" className="link">
                                     <img src="/images/Spa.png" alt="Spa" className="service-image" />
                                     <h1 className="service-heading">Spa</h1>
                                 </Link>
                             </Col>
-                            <Col className="servies-container" onClick={()=> handleSelectedServiceStatus('CLINIC')}>
+                            <Col className="servies-container" onClick={()=> {handleSelectedServiceStatus('CLINIC'); setMainCategoryId(3)}}>
                                 <Link to="/clinic" className="link">
                                     <img src="/images/Clinic.png" alt="Salon" className="service-image" />
                                     <h1 className="service-heading">Clinic</h1>
@@ -95,7 +95,7 @@ const HomePage = () => (
                                 </div>
                             </Col>
                             <Col className="featured-section-card-wrapper pb-4">
-                                {featuredData.map((each) => (
+                                {vendorsData.map((each) => (
                                     <Featured featuredData={each} key={each.id} handleLikeStatus={handleLikeStatus}/>
                                 ))}
                             </Col>
