@@ -2,6 +2,9 @@ import React from "react";
 
 
 const Context = React.createContext({
+    latitude:"",
+    longitude:"",
+    
     selectedService:"All",
     handleSelectedServiceStatus: ()=>{},
 

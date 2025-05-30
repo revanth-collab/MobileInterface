@@ -50,7 +50,8 @@ const Header = () => {
 
             <div className="header-container">
                 <div className="header-left">
-                    <img src="/est_logo25.png" alt="logo" className="header-logo" />
+                    {/* <img src="/est_logo25.png" alt="logo" className="header-logo" /> */}
+                    <h1 className="logo-added"><span className="en-color">e</span>stetica<span className="en-color">n</span>ow</h1>
                 </div>
                 <div className="header-links">
                     <Link to="/" className="header-links-item" onClick={handleActiveOption}>

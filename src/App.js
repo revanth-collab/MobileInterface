@@ -6,15 +6,18 @@ import HomePage from './components/HomePage';
 import SpaPage from './components/SpaPage';
 // import SalonPage from "./components/SalonPage";
 
+import SpaServicePage from "./components/SpaServicePage";
+
 import Context from "./contextAPI/Context"; 
 
 import Header from './components/Header';
 import MobileHeader from "./components/MobileHeader";
+// import { body } from "framer-motion/client";
 
 // import './App.css';
 
 class App extends React.Component {
-  state = {location:"Hyderabad",selectedService:"All",featuredData:[{
+  state = {location:"Hyderabad", latitude:"", longitude:"",selectedService:"All",featuredData:[{
         "id":1,
         "imageUrl":"images/Featured1.png",
         "title":"Oasis Spa Haven",  
@@ -137,6 +140,92 @@ class App extends React.Component {
     ]
     }
 
+    getServicesData = async () => {
+      const { latitude, longitude } = this.state;
+
+      console.log("Fetching services data with latitude:", latitude, "and longitude:", longitude);
+      if (!latitude || !longitude) {
+        console.warn("Missing latitude or longitude.");
+        return;
+      }
+
+      const queryParams = new URLSearchParams({
+        auth_code: "t1LDmyuNIbsBYwRSNFOocUOrs8AATOs1"
+      });
+
+      const url = `/api/user/near-by-shops?${queryParams.toString()}`;
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          latitude: parseFloat(latitude),
+          longitude: parseFloat(longitude),
+          main_category_id: 0
+        })
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        console.log("Services Data:", data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+
+    componentDidMount() {
+      fetch("https://ipapi.co/json/")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({latitude:data.latitude, longitude:data.longitude, location:data.city || "Hyderabad" },
+          () => {
+          this.getServicesData();
+        }
+        );
+      })
+      .catch(error => console.error("IP Geolocation failed", error));
+
+    }
+
+  //   getServicesData = async () => {
+  //   const { latitude, longitude } = this.state;
+
+  //   if (!latitude || !longitude) {
+  //     console.warn("Missing latitude or longitude.");
+  //     return;
+  //   }
+
+  //   console.log("Calling API with:", latitude, longitude);
+
+  //   const url = `/api/user/near-by-shops`; // No query params
+
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       latitude: parseFloat(latitude),
+  //       longitude: parseFloat(longitude),
+  //       main_category_id: 0,
+  //       auth_code: "t1LDmyuNIbsBYwRSNFOocUOrs8AATOs1"
+  //     })
+  //   };
+
+  //   try {
+  //     const response = await fetch(url, options);
+  //     const data = await response.json();
+  //     console.log("Services Data:", data);
+  //   } catch (error) {
+  //     console.error("Error fetching services:", error);
+  //   }
+  // };
+
+
+
     handleSelectedServiceStatus = (service) => {
         this.setState({ selectedService: service });
     }
@@ -154,9 +243,9 @@ class App extends React.Component {
     }
 
   render() {
-    const { location, selectedService, featuredData, bannerData, UpcomingAppointmentData } = this.state;
+    const { location, latitude,longitude, selectedService, featuredData, bannerData, UpcomingAppointmentData } = this.state;    
     return (
-      <Context.Provider value={{location, selectedService, featuredData, bannerData, UpcomingAppointmentData,
+      <Context.Provider value={{location, latitude,longitude, selectedService, featuredData, bannerData, UpcomingAppointmentData,
         handleSelectedServiceStatus: this.handleSelectedServiceStatus,
         handleLocationChange: this.handleLocationChange,
         handleLikeStatus: this.handleLikeStatus
@@ -168,6 +257,7 @@ class App extends React.Component {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/spa" element={<SpaPage />} />
+            <Route exact path="/salon/:id" element={<SpaServicePage />} />
             <Route exact path="/salon" element={<SpaPage />} />
             <Route exact path= "/clinic" element={<SpaPage />} />
           </Routes>

@@ -22,7 +22,7 @@ const HomePage = () => (
                     <Container className="home-page pt-3" fluid>
                         <Row className="row-nowrap px-3 px-md-5 pt-2">
                             <Col xs='auto' className="d-flex d-md-none location-background-container">
-                                <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
+                                <img src="/images/location_icon.png"  alt="location-images" className="location-image" />
                                 <div className="dropdown">
                                     <button className="dropbtn location-heading">{location}</button>
                                     <div className="dropdown-content">
@@ -38,8 +38,8 @@ const HomePage = () => (
                             </Col>
                         </Row>
                         <Row className="px-3 px-md-5 justify-content-center align-items-center mt-md-5 pt-md-5">
-                            <Col md={3} className="d-none d-md-flex location-background-container location-correction">
-                                <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
+                            <Col md="auto" className="d-none d-md-flex location-background-container location-correction">
+                                <img src="/images/location_icon.png"  alt="location-images" className="location-image" />
                                 <div className="dropdown">
                                     <button className="dropbtn location-heading">{location}</button>
                                     <div className="dropdown-content">

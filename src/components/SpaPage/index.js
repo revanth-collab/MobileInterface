@@ -1,4 +1,7 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -19,12 +22,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
 const SpaPage = () => {
-    // const { selectedService, handleSelectedServiceStatus } = useContext(Context);
-    const {selectedService, handleSelectedServiceStatus, featuredData, bannerData, handleLikeStatus} = useContext(Context);
 
+    const navigate = useNavigate();
+
+
+    // const { selectedService, handleSelectedServiceStatus } = useContext(Context);
+    const {selectedService, handleSelectedServiceStatus, featuredData, bannerData, handleLikeStatus, latitude, longitude,location} = useContext(Context);
 
     const [spaService,setSpaService] = useState([]);
     const [premiumSpa,setPremiumSpa] = useState([]);
+
+    // console.log("Latitude:" + latitude, "Longitude:" + longitude," Location:" + location);
 
     const [loading,setLoading] = useState(true);
 
@@ -136,7 +144,6 @@ const SpaPage = () => {
     const handleLocationChanged = (location) => {
         console.log(location);    
     }
-    
     return (
         <Container fluid className="px-md-5 spa-page p-4">
 
@@ -148,7 +155,7 @@ const SpaPage = () => {
                 </Col>
                 <Col className="d-flex d-md-none dropdown spa-page-location-container">
                     <div>
-                        <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
+                        <img src="/images/location_icon.png"  alt="location-images" className="location-image" />
                         <div className="dropdown">
                             <button className="dropbtn location-heading">Hyderabad</button>
                             <div className="dropdown-content">
@@ -170,6 +177,7 @@ const SpaPage = () => {
                 <Col xs={2} className="popup-main-container order-1 order-md-1 mb-2 ms-3">
                     <Popup
                         modal
+                        contentStyle={{ borderRadius: '20px', width: '90%', maxWidth: '600px' }}
                         trigger={
                             <div className="spa-reload-container px-2">
                                 <h1 className="spa-reload-content">{selectedService}</h1>
@@ -178,25 +186,69 @@ const SpaPage = () => {
                         }
                     >
                         {close => (
-                        <>
                             <div className="popup-container">
-                                <p>React is a popular and widely used programming language</p>
+                                <h1 className="popup-heading">Switch Categories</h1>
+                                <div className="popup-card-container">
+                                    <div>
+                                        <div className="link popup-card" onClick={() => {
+                                            handleSelectedServiceStatus('SALON'); 
+                                            close(); 
+                                            navigate('/salon');
+                                        }}>
+                                            <img src="/images/Salon_category.webp" alt="Salon" className="popup-card-image" />
+                                            <div className="popup-card-content">
+                                                <img src="/images/Salon.png" alt="Salon Icon" className="popup-card-content-image " />
+                                                <h1 className="popup-card-title">Salon</h1>
+                                                <FaArrowRight className="featured-arrow" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="link popup-card" onClick={() => {
+                                            handleSelectedServiceStatus('SPA');
+                                            close(); 
+                                            navigate('/spa'); 
+                                        }}>
+                                            <img src="/images/Spa_category.webp" alt="Spa" className="popup-card-image" />
+                                            <div className="popup-card-content">
+                                                <img src="/images/Spa.png" alt="Salon Icon" className="popup-card-content-image " />
+                                                <h1 className="popup-card-title">Spa</h1>
+                                                <FaArrowRight className="featured-arrow" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="link popup-card" onClick={() => {
+                                            handleSelectedServiceStatus('CLINIC');
+                                            close(); 
+                                            navigate('/clinic'); 
+                                        }}>
+                                            <img src="/images/Clinic_category.webp" alt="Clinic" className="popup-card-image" />
+                                            <div className="popup-card-content">
+                                                <img src="/images/Clinic.png" alt="Salon Icon" className="popup-card-content-image " />
+                                                <h1 className="popup-card-title">Clinic</h1>
+                                                <FaArrowRight className="featured-arrow" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button
-                            type="button"
-                            className="trigger-button"
-                            onClick={() => close()}
-                            >
-                            Close
-                            </button>
-                        </>
+                            // {/* <button
+                            // type="button"
+                            // className="trigger-button"
+                            // onClick={() => close()}
+                            // >
+                            // Close
+                            // </button> */}
                         )}
                     </Popup>
                 </Col>
 
                 <Col xs={3} className="order-3 d-none d-md-flex dropdown spa-page-location-container mb-2">
                     <div>
-                        <img src="/images/Group 1000006152.png"  alt="location-images" className="location-image" />
+                        <img src="/images/location_icon.png"  alt="location-images" className="location-image" />
                         <div className="dropdown">
                             <button className="dropbtn location-heading">Hyderabad</button>
                             <div className="dropdown-content">

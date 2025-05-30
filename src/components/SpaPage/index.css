@@ -298,12 +298,74 @@
   justify-content: center;
   gap:5px;
   border-radius: 20px;
-  margin: 0;
-  padding: 0;
 }
 .popup-container {
   display: flex;
   flex-direction: column;
   align-items:center;
   justify-content: center;
+  padding: 10px 20px;
+}
+.popup-content-container {
+  border-radius: 10px;
+}
+
+.popup-heading {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  color: #111111;
+  margin: 0;
+  align-self: flex-start;
+}
+
+.popup-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.popup-card {
+  /* min-width: 100px;
+  min-height: 100px; */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 3px 3px rgba(15, 15, 15, 0.06);
+  padding: 7px;
+  cursor: pointer;
+  gap:10px;
+}
+.popup-card-image {
+  width: 160px;
+  height: 110px;
+  border-radius: 10px;
+}
+.popup-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:7px;
+  padding: 10px;
+  text-align: center;
+}
+.popup-card-content-image {
+  width: 50px;
+  height: 50px;
+}
+.popup-card-title {
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: #111111;
+  margin: 0;
 }
